@@ -1,0 +1,14 @@
+{
+  "name": "aqa-advanced-pw",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000a\u0000q\u0000a\u0000-\u0000a\u0000d\u0000v\u0000a\u0000n\u0000c\u0000e\u0000d\u0000-\u0000p\u0000w\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.47.2",
+    "@types/node": "^22.5.5"
+  }
+}
