@@ -77,6 +77,39 @@ test.describe('Sign up tests', () => {
     await page.waitForTimeout(1000);
     await expect(form).toContainText('Passwords do not match');
   });
+
+  test('Name required', async ({ page }) => {
+    await page.locator('#signupName').click();
+    await page.locator('#signupLastName').click();
+    await expect(page.locator('form')).toContainText('Name required');
+  });
+
+  test('Name has to be from 2 to 20 characters long', async ({ page }) => {
+    await page.locator('#signupName').fill('d');
+    await page.locator('#signupLastName').click();
+    await expect(page.locator('form')).toContainText('Name has to be from 2 to 20 characters long');
+  });
+
+  test('Name has to be from 2 to 20 characters long, for long name', async ({ page }) => {
+    await page.goto('https://guest:welcome2qauto@qauto.forstudy.space/');
+    await page.getByRole('button', { name: 'Sign up' }).click();
+    await page.locator('#signupName').click();
+    await page.locator('#signupName').fill('ddddddddddddddddddddddddddddddddddddddddddddddddddd');
+    await page.locator('#signupLastName').click();
+    await expect(page.locator('form')).toContainText('Name has to be from 2 to 20 characters long');
+  });
+
+  test('Last name is invalid', async ({ page }) => {
+    await page.locator('#signupLastName').fill('1');
+    await page.getByLabel('Name').click();
+    await expect(page.locator('form')).toContainText('Last name is invalid');
+  });
+
+  test('Email is incorrect', async ({ page }) => {
+    await page.getByLabel('Password', { exact: true }).click();
+    await page.getByText('Email is incorrect').click();
+    await expect(page.locator('form')).toContainText('Email is incorrect');
+  });
 });
 
 
