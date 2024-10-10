@@ -10,7 +10,7 @@ test.describe('Sign up tests', () => {
     homePage = new HomePage(page);
     registrationForm = new RegistrationForm(page);
 
-    page.goto("https://guest:welcome2qauto@qauto.forstudy.space/");
+    page.goto("/");
     await homePage.openRegistrationForm();
   });
 

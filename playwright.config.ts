@@ -1,16 +1,18 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config();
 
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
+const baseURL = process.env.BASE_URL;
+const httpUsername = process.env.HTTP_USERNAME;
+const httpPassword = process.env.HTTP_PASSWORD;
+
+if (!baseURL || !httpUsername || !httpPassword) {
+  throw new Error(
+    'Please define BASE_URL, HTTP_USERNAME, and HTTP_PASSWORD in your .env file'
+  );
+}
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -25,13 +27,11 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    baseURL: 'https://qauto.forstudy.space',
+    baseURL: baseURL,
     httpCredentials: {
-      username: 'guest',
-      password: 'welcome2qauto',
+      username: httpUsername,
+      password: httpPassword,
     },
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
