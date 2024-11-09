@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../page-objects/pages/HomePage';
-import { RegistrationForm } from '../page-objects/components-forms/registrationForm'
+import { RegistrationForm } from '../page-objects/components/forms/registrationForm'
 
 
 test.describe('Sign up tests', () => {
